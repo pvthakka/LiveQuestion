@@ -1,0 +1,8 @@
+<h2>Search Existing Posts</h2>
+<%= form_tag :controller => 'posts', :action => 'search' do %>
+    <%#= text_field_tag :category, params[:category], :size => 30, :placeholder => 'Category', :maxlength => 20%>
+    <%#= text_field_tag :content, params[:content], :size => 30, :placeholder => 'Content', :maxlength => 20%>
+    <%#= text_field_tag :username, params[:username], :size => 30, :placeholder => 'Username', :maxlength => 20%>
+    <%= text_field_tag :search, params[:search]%>
+    <%= submit_tag "Search", :name => nil %>
+<%end%>

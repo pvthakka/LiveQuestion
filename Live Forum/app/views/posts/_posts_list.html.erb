@@ -1,0 +1,41 @@
+<ul id="posts_list">
+  <% @all_posts.reverse.each do |post| %>
+      <li <% if @all_posts.first == post %> class="first" <% end %>>
+        <div class="post_message_container">
+          <h3><%= link_to post.user.username, post.user %></h3>
+          <%= h link_to post.message, post %>
+           <div class="time_ago">
+            <%= distance_of_time_in_words_to_now(post.created_at)%> ago
+          </div>
+          <h4>
+          <%#(post.category).split(/\s/).each do |c|  %>
+            <%#= "##{c}"  %>
+           <% #end %>
+            #<%= "#{post.category.category}" %>
+            <div class="edit_links">
+            <p>
+              <% if post.user.id == session[:user_id] || current_user.admin == 1%>
+                  <p><%= button_to "Delete", post, :method => :delete, data: {confirm: "Do you want to delete the post ?"}%></p>
+               <% end %>
+            <% if post.user.id == session[:user_id] %>
+                 <p><%= button_to "Edit", edit_post_path(post), :method => :get%></p>
+            <% else %>
+                <%#= button_to "Vote", new_vote_path, :post_id => post.id %>
+                <% if can_vote?(post.id) %>
+                    <%= button_to "Vote", :controller => :posts, :action => :create_vote, :post_id => post.id %>
+                <% end %>
+                <%# if post.commented == 0 %>
+                      <%#= button_to "Comment", :controller => :comments, :action => :new, :id => post.id %>
+                      <%= button_to "Comment", :controller => :comments, :action => :new, :post_id => post.id %>
+                <%# end %>
+            <% end %>
+              <p>
+              <%= render :partial => 'posts/votes', :locals => {:post => post} %>
+             </p>
+            </div>
+          </h4>
+        </div>
+        <div class="clear"></div>
+      </li>
+  <%end%>
+</ul>

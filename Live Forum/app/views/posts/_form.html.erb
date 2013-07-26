@@ -1,0 +1,22 @@
+<%= link_to "Back", posts_path %>
+<%= form_for @post do |f| %>
+    <div id="new_post_form">
+      <h3>Please post your question</h3>
+       <%= f.text_area :message %>
+    </div>
+
+    <%#= text_field_tag :category, '', :size => 30, :placeholder => 'Category', :maxlength => 20%>
+    <%= f.label :category_id %>
+    <%= select("post", "category_id", Category.all.collect{ |c| [ c.category, c.id] }) %>
+    <%#= f.select(:category, :id, Category.all.collect{ |c| [ c.category, c.id] }) %>
+    <%#= f.select :category, options_for_select()%>
+    <%#= f.collection_select @category %>
+
+    <div id="submit_button_container">
+      <%= f.submit "", :class => "button" %>
+      <%#= f.submit "Post", :class => "button" %>
+      <%#= f.submit "Post"  %>
+    </div>
+    <div class="clear"></div>
+    </div>
+<%- end -%>

@@ -1,0 +1,19 @@
+<%title "Edit comment"%>
+
+<p>
+  <%= link_to "Back", post_path(@current_comment.post_id) %>
+</p>
+<h3>
+  <p><%= @current_post.message %></p>
+</h3>
+<%= form_for @current_comment do |f|%>
+    <div id="new_post_form">
+      <h3>Edit your comment</h3>
+      <%= text_area_tag :comment, params[:comment], :values => @current_comment.comment%>
+    </div>
+    <div id="submit_button_container">
+      <%= f.submit "", :class => "button"%>
+    </div>
+    <div class="clear"></div>
+    </div>
+<% end %>

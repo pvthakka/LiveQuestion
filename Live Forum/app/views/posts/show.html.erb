@@ -1,0 +1,15 @@
+<p>
+  <%= link_to "Back", posts_path %>
+</p>
+<%title "Single post"  %>
+<p>
+<%= render :partial => "posts/single", :locals => {:posts => @post} %>
+</p>
+<br>
+<p>
+
+<% if @post.commented == 1%>
+    <%= render :partial => "comments/show", :locals => {:comments => @comments} %>
+<% end %>
+</br>
+</p>

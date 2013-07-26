@@ -1,0 +1,139 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+.clear {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+body {
+    background-color: #4B7399;
+    font-family: 'Lucida Grande',sans-serif;
+    font-size: 0.75em;
+    color: #333333;
+}
+#container {
+    width: 65%;
+    margin: 0 auto;
+    background-color: #FFF;
+    padding: 20px 40px;
+    border: solid 1px black;
+    margin-top: 20px;
+    float: left;
+}
+#header {
+    width: auto;
+    margin: 15px auto 0px auto;
+    background-color: #4B7399;
+}
+#header #top_links_container {
+    float: right;
+    width: auto;
+    background-color: #FFF;
+    padding: 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    text-align: right;
+    margin-right: 135px;
+    margin-top: 25px;
+}
+a img {
+    border: none;
+}
+
+a {
+    color: #0000FF;
+}
+input.button {
+    background: url(/images/button.gif) top left no-repeat;
+    width: 116px;
+    height: 30px;
+    border: 0px;
+    font-size: 120%;
+    color: #666;
+}
+/*postS LIST*/
+
+#posts_list {
+    padding: 10px;
+    width: 70%;
+    #margin: auto auto auto auto;
+    margin: 0, auto;
+    margin-left: 0px;
+    float: left;
+}
+#posts_list li {
+    list-style: none;
+    padding: 10px 0px;
+    margin: 0px;
+    background-color: #fff;
+    border-bottom: 1px dashed #D2DADA;
+}
+#posts_list li :hover {
+    background-color: #E7E7E7;
+}
+#posts_list li {
+    border-top: 1px dashed #D2DADA;
+}
+#posts_list li img {
+    float: left;
+}
+#posts_list li div.post_message_container {
+    float: left;
+    margin-left: 10px;
+
+}
+#posts_list li div.post_message_container a {
+    color: #2276bb;
+    text-decoration: none;
+    font-weight: bold;
+}
+#posts_list li div.post_message_container div.time_ago {
+    color: #9C9C9C;
+    font-size: 90%;
+    padding-top: 3px;
+}
+#posts_list li div.post_message_container div.edit_links {
+    color: #FF00FF;
+    font-weight: bold;
+    float: right;
+}
+/*postS FORM*/
+
+#new_post_form {
+    width: 700px;
+    margin-bottom: 25px;
+}
+#new_post_form  textarea{
+    width: 700px;
+    height: 50px;
+}
+#new_post_form  h3{
+    font-weight: normal;
+    font-size: 150%;
+    margin: 0px;
+    padding: 0px 0px 5px 0px;
+}
+#new_post_form #latest_message{
+    color: #9C9C9C;
+    font-size: 70%;
+    padding-top: 3px;
+    float: left;
+    width: 360px;
+}
+#new_post_form #submit_buttom_container{
+    float: right;
+    width: 160px;
+    text-align: right;
+    padding-top: 3px;
+}

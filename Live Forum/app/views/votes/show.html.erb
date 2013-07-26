@@ -1,0 +1,16 @@
+<p>
+  <%= link_to "Back", :back %>
+</p>
+<%title "People who have voted" %>
+<ul id="posts_list">
+  <li class="first">
+    <div class="post_message_container">
+      <h3><% @votes.each do |v| %></h3>
+            <h4><%= v.user.username%></h4>
+      <div class="time_ago">
+        <%= distance_of_time_in_words_to_now(v.created_at)%> ago
+       </div>
+      <% end %>
+    </div>
+  </li>
+</ul>

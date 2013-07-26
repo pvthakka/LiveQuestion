@@ -1,0 +1,12 @@
+<%title "Welcome to Back Channel #{current_user.username}"%>
+<% if current_user.admin == 1 %>
+    <%= link_to "Back", users_path %>
+<% end %>
+<p>
+  <h2><%= link_to "Add a new post", new_post_path  %></h2>
+</p>
+<div>
+  <%= render :partial => 'posts/search' %>
+</div>
+
+<%= render :partial => "posts_list", :locals => {:posts => @all_posts} %>

@@ -1,0 +1,54 @@
+<%title "Admin page"%>
+<p>
+<h2><%= link_to "List of Posts", posts_path%></h2>
+</p>
+<p><%= button_to "Generate report", :controller => :users, :action => :report%></p>
+<p>
+<h2>List of Categories: </h2>
+<table>
+    <% @category.each do |c| %>
+      <tr>
+        <td><h4><%= c.category %></h4></td>
+        <td><%= button_to "Delete Category", :method => :delete, :controller => :users, :action => :delete_category, :category_id => c.id %></td>
+      </tr>
+    <% end %>
+</table>
+</p>
+<%= form_tag :controller => :users, :action => :add_category do %>
+    <%= text_field_tag :new, params[:new]%>
+    <%= submit_tag "Add Category", :name => nil %>
+<%end%>
+
+<br>
+<p><h2>List of Users:</h2></p>
+
+<p>
+<ul id="posts_list">
+  <% @users.each do |user| %>
+      <li>
+      <div class="post_message_container">
+           <h3>Username: <%= user.username %></h3>
+            <h3>Email: <%= user.email %></h3>
+            <div class="time_ago">
+            Created <%= distance_of_time_in_words_to_now(user.created_at)%> ago
+            </div>
+            <% if current_user.admin == 1 %>
+            <p>
+              <% if user.admin == 0 %>
+                <%= button_to "Make admin", :controller => :users, :action => :make_admin, :user_id => user.id%>
+              <% end %>
+              <% if user.admin == 1 && user.username != "admin"%>
+                  <%= button_to "Revoke admin rights", :controller => :users, :action => :make_admin, :user_id => user.id%>
+               <% end %>
+              <% if user.username != "admin"%>
+                  <%= button_to "Delete", :controller => :users, :action => :delete_user, :confirm => "Do you want to delete the user ?", :method => :delete, :user_id => user.id%>
+              <% end %>
+            </p>
+             <% end %>
+
+        </div>
+       <div class="clear"></div>
+      </li>
+  <% end %>
+</ul>
+</p>

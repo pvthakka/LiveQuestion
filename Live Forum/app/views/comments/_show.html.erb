@@ -1,0 +1,51 @@
+<ul id="posts_list">
+  <% @comments.each do |comment| %>
+      <li <% if @comments.first == comment %> class="first" <% end %>>
+      <div class="post_message_container">
+           <h3><%= comment.comment %></h3>
+            <div class="time_ago">
+             <%= distance_of_time_in_words_to_now(comment.created_at)%> ago
+        </div>
+        <% if comment.user.id == session[:user_id] %>
+            <h4>By: You</h4>
+        <% else %>
+            <h4>By: <%= comment.user.username %></h4>
+        <% end %>
+        <div class="edit_links">
+        <% if comment.user.id == session[:user_id] || current_user.admin == 1%>
+            <p><%= button_to "Delete", comment, :confirm => "Do you want to delete the post ?", :method => :delete, :id => comment.id%></p>
+        <% end %>
+        <% if comment.user.id == session[:user_id] %>
+             <p>
+             <%#= button_to "Edit", :controller => :comments, :action => :edit, :method => :get, :id => @comment[0].id%>
+             <%= button_to "Edit", edit_comment_path(comment), :method => :get%>
+             <%#= button_to "Delete", :controller => :comments, :action => :destroy, :confirm => "Do you want to delete the comment ?", :method => :delete, :id => @comment[0].id%>
+             </p>
+         <% else %>
+            <% if can_vote_comment?(comment.id) %>
+                <%= button_to "Vote", :controller => :comments, :action => :create_vote, :comment_id => comment.id %>
+            <% end %>
+            <% end %>
+        </div>
+        <%
+           #votes = get_votes_comment(@comment[0].id)
+           votes_count = num_votes_comment(comment.id)
+           if votes_count == 1
+             if can_vote_comment?(comment.id)
+                     output = "One person voted for this comment"
+             else
+                     output = "You voted for this comment"
+             end
+           else if can_vote_comment?(comment.id)
+                  output = "#{votes_count} people voted for this comment"
+                else
+                  output = "You and #{votes_count-1} other people voted for this comment"
+                end
+           end
+        %>
+        <p><%= link_to output, :controller => :commentvotes, :action => :show, :comment_id => comment.id %></p>
+      </div>
+        <div class="clear"></div>
+    </li>
+  <% end %>
+</ul>

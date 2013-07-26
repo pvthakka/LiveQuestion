@@ -1,0 +1,17 @@
+<ul id="posts_list">
+  <li class="first">
+    <div class="post_message_container">
+      <h3><%= @post.message %></h3>
+      <div class="time_ago">
+        <%= distance_of_time_in_words_to_now(@post.created_at)%> ago
+      </div>
+      <% if @post.user.id == session[:user_id] %>
+          <h4>By: You</h4>
+      <% else %>
+          <h4>By: <%= @post.user.username %></h4>
+      <% end %>
+      <% post = @post %>
+      <%= render :partial => 'posts/votes', :locals => {:post => post} %>
+    </div>
+  </li>
+</ul>

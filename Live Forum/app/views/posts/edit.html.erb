@@ -1,0 +1,21 @@
+<%title "Edit"  %>
+
+<p>
+  <%= link_to "Back", posts_path %>
+</p>
+
+<%= form_for @post do |f| %>
+    <div id="new_post_form">
+      <h3>Edit your question</h3>
+      <%= f.text_area :message, :value => @post.message%>
+    </div>
+
+    <%#= text_field_tag :category, params[:category], :size => 30, :value => @post.category, :maxlength => 20%>
+
+    <div id="submit_button_container">
+      <%= f.submit "", :class => "button" %>
+      <%#= f.submit "Post", :class => "button" %>
+    </div>
+    <div class="clear"></div>
+    </div>
+<%- end -%>

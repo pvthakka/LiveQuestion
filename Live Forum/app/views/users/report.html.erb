@@ -1,0 +1,32 @@
+<h3><%= link_to "Back", users_path %></h3>
+<%title "Report"%>
+<table>
+  <tr>
+    <th style="text-align: left;">User</th>
+    <th style="text-align: left;">Total Posts Posted</th>
+    <th style="text-align: left;">Total Votes on his Posts</th>
+    <th style="text-align: left;">Total Comments on his Posts</th>
+    <th style="text-align: left;">Total Votes on his Comments </th>
+    <th style="text-align: left;">Total Posts voted</th>
+    <th style="text-align: left;">Total Posts commented</th>
+    <th style="text-align: left;">Total Comments Voted</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+    <% @users.each do |user| %>
+        <tr>
+           <td><%= user.username %></td>
+           <td><%= user_get_posts(user.id) %></td>
+           <td><%= user_get_votes_posts(user.id) %></td>
+           <td><%= user_get_comments_post(user.id) %></td>
+           <td><%= user_get_comments_votes(user.id) %></td>
+           <td><%= user_post_voted(user.id) %></td>
+           <td><%= user_total_comments(user.id) %></td>
+           <td><%= user_comments_voted(user.id) %></td>
+           <td></td>
+        </tr>
+
+    <% end %>
+
+</table>
